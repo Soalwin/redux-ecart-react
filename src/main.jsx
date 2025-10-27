@@ -6,6 +6,10 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter><App /></BrowserRouter>
+    <BrowserRouter>
+    <Provider store={cartStore}>
+      <App />
+      </Provider>
+      </BrowserRouter>
   </StrictMode>,
 )

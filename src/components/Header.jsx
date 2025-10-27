@@ -1,10 +1,11 @@
 import React from "react";
 
-function App() {
+function App({insideHome}) {
   return (
     <div style={styles.app}>
       <header style={styles.header}>
         <h1 style={styles.title}>My Website</h1>
+       {insideHome && <input style={{width:'300px'}} className="roudned border p-2" placeholder="search products name" type="text" />}
         <nav style={styles.nav}>
           <a href="#home" style={styles.link}>Home</a>
           <a href="#about" style={styles.link}>About</a>
