@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function App({insideHome}) {
   return (
@@ -7,9 +8,9 @@ function App({insideHome}) {
         <h1 style={styles.title}>My Website</h1>
        {insideHome && <input style={{width:'300px'}} className="roudned border p-2" placeholder="search products name" type="text" />}
         <nav style={styles.nav}>
-          <a href="#home" style={styles.link}>Home</a>
-          <a href="#about" style={styles.link}>About</a>
-          <a href="#contact" style={styles.link}>Contact</a>
+          <Link to="/" style={styles.link}>Home</Link>
+          <Link to="/wishlist" style={styles.link}>Wishlist</Link>
+                    <Link to="/cart" style={styles.link}>cart</Link>
         </nav>
       </header>
 

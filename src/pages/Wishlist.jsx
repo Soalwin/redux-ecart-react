@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from '../components/Header'
 
 const Wishlist = () => {
   return (
+     
+
     <>
+    <Header/>
       <div style={{paddingTop:'100px'}} className='px-5'><h1 className='text-4xl font-bold justify-center'>Wishlist</h1>
       <>
        <div  className="container px-4 mx-auto">

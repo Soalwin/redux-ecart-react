@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../components/Header'
 
 const Cart = () => {
   return (
     <>
+    <Header/>
       <div style={{ paddingTop: '100px' }} className='px-5'>
         <>
           <h1 className='text-5xl font-bold text-blue-600'> cart summary </h1>

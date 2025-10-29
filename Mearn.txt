@@ -1,3 +1,12 @@
 27-10-2025
 
 dynamic routing in react router dom using ':' symbol 
+
+createasyncthunk: in redux - a lot asked- to make asynchronous call in an action in redux. accpets two arguments ,frist one is a type string("slice_name"),2nd argument is a call back function it can return promise. its output can be three different types 
+1 pending 
+2 fulfilled
+3 rejected states.
+
+"extra reducers"- handle the action brought by asyncthunk. it has different cases based on the promise output.
+
+use param()
