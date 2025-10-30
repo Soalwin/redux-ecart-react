@@ -1,13 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import Header from '../components/Header' 
+import { addToWishlist } from '../redux/slices/wishlistSlice';
+import { addToCart } from '../redux/slices/cartSlice';
+
 
 const View = () => {
+
+  const dispatch = useDispatch()
+  const userWishlist = useSelector(state=>state.wishlistReducer)
+  const userCart = useSelector(state=>state.cartReducer)
+  
+
+
   const[product, setProduct] = useState({})
   const {id} = useParams()
   console.log(id);
   
+
+
+  const handleWishlist = (id)=>{
+    const existingProduct = userWishlist?.find(item=>item?.id == id)
+    if(existingProduct){
+      alert('already exist')
+    }else{
+      dispatch(addToWishlist(product))
+      alert('item added to wishlist...')
+    }
+  }
+
+   const handleCart = ()=>{
+    dispatch(addToCart(product))
+    const existingProduct = userCart?.find(item=>item?.id == id)
+    if(existingProduct){
+      alert('product quantity incremented')
+    }else{
+      alert('product added to your cart')
+    }
+  }
+
+
   useEffect(()=>{
     if(sessionStorage.getItem("allProducts")){
       const allProducts = JSON.parse(sessionStorage.getItem("allProducts"))
@@ -32,8 +65,8 @@ const View = () => {
           <div>
             <img width={'350px'} src={product?.thumbnail} alt="" />
             <div className='flex justify-between mt-5'>
-              <button className='bg-blue-600 text-white p-2 border rounded-2xl'>Add to Wishlist</button>
-              <button className='bg-green-600 text-white p-2 border rounded-2xl'>Add to cart</button>
+              <button onClick={()=>handleWishlist(product?.id)} className='bg-blue-600 text-white p-5 border rounded-2xl'>Add to Wishlist</button>
+              <button onClick={handleCart} className='bg-green-600 text-white p-2 border rounded-2xl'>Add to cart</button>
             </div>
 
           </div>          <div>

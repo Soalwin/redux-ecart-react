@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <Header insideHome={true} />  
-      <div style={{ paddingTop: '100px' }} className="container px-4 mx-auto">
+      <div style={{ paddingTop: '100px' }} className="container px-4 mx-auto ">
         {
           loading ?
           <div className='flex justify-center items-center my-5 '>
@@ -26,10 +26,10 @@ const Home = () => {
           </div>
           :
             <>
-              <div className='grid grid-cols-4 gap-4'>
+              <div className='grid grid-cols-4 gap-6'>
                { allproducts?.length>0 ?
                  allproducts?.map(product=>(
-                    <div className="max-w-sm bg-white rounded-xl overflow-hidden shadow-lg mx-auto hover:shadow-2xl transition-shadow duration-300">
+                    <div key={product?.id} className="max-w-sm bg-white rounded-xl overflow-hidden shadow-lg mx-auto hover:shadow-2xl transition-shadow duration-300">
   
                   <img
                     className="w-full h-48 object-cover"

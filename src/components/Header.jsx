@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function App({insideHome}) {
+  const userWishlist = useSelector(state=>state.wishlistReducer)
+    const userCart = useSelector(state=>state.cartReducer)
+
   return (
     <div style={styles.app}>
       <header style={styles.header}>
@@ -9,8 +13,8 @@ function App({insideHome}) {
        {insideHome && <input style={{width:'300px'}} className="roudned border p-2" placeholder="search products name" type="text" />}
         <nav style={styles.nav}>
           <Link to="/" style={styles.link}>Home</Link>
-          <Link to="/wishlist" style={styles.link}>Wishlist</Link>
-                    <Link to="/cart" style={styles.link}>cart</Link>
+          <Link to="/wishlist" style={styles.link}>Wishlist <span className="p-1 rounded bg-black">{userWishlist?.length}</span></Link>
+                    <Link to="/cart" style={styles.link}>cart <span className="p-1 rounded bg-black">{userCart?.length}</span></Link>
         </nav>
       </header>
 
