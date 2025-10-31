@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,28 @@ const Home = () => {
     dispatch(fetchProducts())
   }, [])
 
+  //pagination
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const productsPerPage = 8
+  const totalPage = Math.ceil(allproducts?.length / productsPerPage)
+  const currentPageLastIndex = currentPage*productsPerPage
+  const currentPageFirstIndex = currentPageLastIndex - productsPerPage
+  const visibleProducts = allproducts?.slice(currentPageFirstIndex,currentPageLastIndex)
+
+
+  const navigateBack = ()=>{
+    if(currentPage!=1){
+      setCurrentPage(currentPage-1)
+    }
+  }
+
+    const navigateNext = ()=>{
+    if(currentPage!=totalPage){
+      setCurrentPage(currentPage+1)
+    }
+  }
+
   return (
     <>
       <Header insideHome={true} />  
@@ -28,7 +50,7 @@ const Home = () => {
             <>
               <div className='grid grid-cols-4 gap-6'>
                { allproducts?.length>0 ?
-                 allproducts?.map(product=>(
+                 visibleProducts?.map(product=>(
                     <div key={product?.id} className="max-w-sm bg-white rounded-xl overflow-hidden shadow-lg mx-auto hover:shadow-2xl transition-shadow duration-300">
   
                   <img
@@ -55,6 +77,13 @@ const Home = () => {
                   Product not found!!!
                 </div>
                 }
+              </div>
+              {/* pagi */}
+              <div className='text-2xl text-center font-bold mt-20 mb-20'>
+                <span className='cursor-pointer'><i onClick={navigateBack} className='fa-solid fa-backward me-5'></i></span>
+                <span>{currentPage} of {totalPage}</span>
+                <span className='cursor-pointer'><i onClick={navigateNext} className='fa-solid fa-forward ms-5'></i></span>
+
               </div>
             </>
 
