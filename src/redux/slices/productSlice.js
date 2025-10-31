@@ -18,7 +18,6 @@ const productSlice = createSlice({
         errorMsg:""
     },
     reducers:{
-
     },
     extraReducers:(builder)=>{
         builder.addCase(fetchProducts.fulfilled,(state,apiResult)=>{
